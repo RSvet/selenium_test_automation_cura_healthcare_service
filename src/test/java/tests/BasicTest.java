@@ -11,6 +11,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import pages.Homepage;
+import pages.LoginPage;
 import pages.SideNavPage;
 
 import java.io.IOException;
@@ -26,6 +27,7 @@ public abstract class BasicTest {
     protected String baseUrl = "https://katalon-demo-cura.herokuapp.com/";
     protected Homepage homepage;
     protected SideNavPage sideNavPage;
+    protected LoginPage loginPage;
 
 
 
@@ -40,6 +42,7 @@ public abstract class BasicTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         homepage = new Homepage(driver, wait);
         sideNavPage = new SideNavPage(driver,wait);
+        loginPage = new LoginPage(driver, wait);
     }
     @BeforeMethod
     public void beforeMethod(){
