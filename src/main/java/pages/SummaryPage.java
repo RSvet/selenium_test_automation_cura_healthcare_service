@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class SummaryPage extends BasicPage{
     public SummaryPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
@@ -30,5 +32,10 @@ public class SummaryPage extends BasicPage{
 
     public void clickOnGoToHomePageButton(){
         getGoToHomePageButton().click();
+    }
+    public boolean isAppointmentConfirmationPresent(){
+        List<WebElement> confirmation = driver.findElements(By.tagName("h2"));
+        return !confirmation.isEmpty();
+
     }
 }

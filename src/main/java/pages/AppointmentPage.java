@@ -37,6 +37,11 @@ public class AppointmentPage extends BasicPage{
     public WebElement getFirstHealthcareProgram(){
         return driver.findElement(By.xpath("//label[@class='radio-inline'][1]/input[@name='programs']"));
     }
+    public void setYesterdayDate(){
+        LocalDate yesterday = LocalDate.now().minusDays(1);
+        String dateInput = yesterday.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        getDateInput().sendKeys(dateInput);
+    }
 
     public boolean isFirstHealthCareSelected(){
         return getFirstHealthcareProgram().isSelected();

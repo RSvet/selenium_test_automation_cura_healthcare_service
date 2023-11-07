@@ -56,5 +56,15 @@ public class MakeAppointmentTests extends BasicTest{
 
     }
 
+    @Test(priority = 3, retryAnalyzer = RetryAnalyzer.class)
+    public void trySubmittingFormWithYesterdayDate() {
+        appointmentPage.setYesterdayDate();
+        appointmentPage.clickBookAppointmentButton();
+
+        Assert.assertFalse(summaryPage.isAppointmentConfirmationPresent(),
+                "Appointment confirmation should not be present for the date in the past");
+
+    }
+
 
 }
