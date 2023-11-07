@@ -29,5 +29,12 @@ public class LoginPage extends BasicPage{
         return driver.findElement(By.cssSelector("p.lead.text-danger")).getText();
     }
 
+    public WebElement getUsernameInput(){
+        return driver.findElement(By.id("txt-username"));
+    }
+    public WebElement getPasswordInput(){
+        return driver.findElement(By.id("txt-password"));
+    }
+
 
 }
