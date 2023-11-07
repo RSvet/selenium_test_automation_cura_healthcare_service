@@ -24,4 +24,16 @@ public class HistoryPage extends BasicPage{
         return   driver.findElement(By.id("facility")).getText();
     }
 
+    public String getAppointmentDate(){
+        return driver.findElement(By.className("panel-heading")).getText();
+    }
+    public String getHealthcareProgram(){
+        return driver.findElement(By.id("program")).getText();
+    }
+    public String getHospitalReadmission(){
+        return driver.findElement(By.id("hospital_readmission")).getText();
+    }
+    public String getComment(){
+        return driver.findElement(By.id("comment")).getText();
+    }
 }

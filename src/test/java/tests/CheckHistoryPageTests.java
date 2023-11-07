@@ -62,4 +62,35 @@ public class CheckHistoryPageTests extends BasicTest{
                 "Facility should be "+facility);
 
     }
+
+    @Test(priority=3, retryAnalyzer = RetryAnalyzer.class)
+    public void checkHistoryPageAppointmentInformation(){
+
+        String facility = "Hongkong CURA Healthcare Center";
+        String healthcare = "Medicare";
+        String readmission = "No";
+        String comment ="";
+
+        driver.navigate().to(baseUrl+"history.php#history");
+
+        wait
+                .withMessage("Url should be "+baseUrl+"history.php#history")
+                .until(ExpectedConditions.urlToBe(baseUrl+"history.php#history"));
+
+        Assert.assertTrue(historyPage.isAppointmentPanelPresent(), "Panel with appointment info is not present");
+        Assert.assertEquals(historyPage.getFacilityText(), facility,
+                "Facility should be "+facility);
+        Assert.assertEquals(historyPage.getAppointmentDate(), appointmentPage.tomorrowDate(), "Date should be tomorrow");
+        Assert.assertEquals(historyPage.getHealthcareProgram(), healthcare, "Healthcare should be "+healthcare);
+        Assert.assertEquals(historyPage.getHospitalReadmission(), readmission, "Readmission should be "+readmission);
+        Assert.assertEquals(historyPage.getComment(), comment, "Comment section should be empty");
+
+        sideNavPage.clickOnHamburgerButton();
+        sideNavPage.waitForSideNav();
+        sideNavPage.clickLogout();
+
+        wait
+                .withMessage("User is not logged out")
+                .until(ExpectedConditions.urlToBe(baseUrl));
+    }
 }
