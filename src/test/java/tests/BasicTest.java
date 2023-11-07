@@ -6,9 +6,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import pages.Homepage;
+
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -20,6 +23,7 @@ public abstract class BasicTest {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected String baseUrl = "https://katalon-demo-cura.herokuapp.com/";
+    protected Homepage homepage;
 
 
     @BeforeClass
@@ -31,6 +35,7 @@ public abstract class BasicTest {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        homepage = new Homepage(driver, wait);
     }
     @BeforeMethod
     public void beforeMethod(){
@@ -45,5 +50,10 @@ public abstract class BasicTest {
             String currentDate = dateFormat.format(date);
             Helper.takeAScreenshot(driver, "screenshots/" + testResult.getName() +"_"+currentDate+".jpg");
         }
+    }
+
+    @AfterClass
+    public void afterClass() {
+        driver.quit();
     }
 }
