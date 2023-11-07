@@ -27,4 +27,34 @@ public class MakeAppointmentTests extends BasicTest{
         Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "#appointment", "User is redirected");
     }
 
+    @Test(priority = 2, retryAnalyzer = RetryAnalyzer.class)
+    public void trySubmittingFormWithEnteredDate() {
+        String firstFacilityOption = "Tokyo CURA Healthcare Center";
+        String firstHealthcareProgramOption = "Medicare";
+        appointmentPage.setTomorrowDate();
+        Assert.assertEquals(appointmentPage.getSelectedFacilityText(), firstFacilityOption,
+                "Selected option should be " + firstFacilityOption);
+        Assert.assertTrue(appointmentPage.isFirstHealthCareSelected(), "First healthcare option is not selected");
+        appointmentPage.clickBookAppointmentButton();
+        wait
+                .withMessage("User is not on the appointment summary page")
+                .until(ExpectedConditions.urlToBe(baseUrl + "appointment.php#summary"));
+
+        Assert.assertEquals(summaryPage.getAppointmentConfirmationText(), "Appointment Confirmation",
+                "Title should be 'Appointment Confirmation'");
+        Assert.assertEquals(summaryPage.getFacilityName(), firstFacilityOption,
+                "Facility name should be " + firstFacilityOption);
+        Assert.assertEquals(summaryPage.getProgramName(), firstHealthcareProgramOption,
+                "Program should be " + firstHealthcareProgramOption);
+        Assert.assertEquals(summaryPage.visitDate(), appointmentPage.tomorrowDate(),
+                "Visit date should be tomorrow");
+
+        summaryPage.clickOnGoToHomePageButton();
+        wait
+                .withMessage("User is not on the home page")
+                .until(ExpectedConditions.urlToBe(baseUrl));
+
+    }
+
+
 }

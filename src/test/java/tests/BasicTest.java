@@ -10,10 +10,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import pages.AppointmentPage;
-import pages.Homepage;
-import pages.LoginPage;
-import pages.SideNavPage;
+import pages.*;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -30,6 +27,7 @@ public abstract class BasicTest {
     protected SideNavPage sideNavPage;
     protected LoginPage loginPage;
     protected AppointmentPage appointmentPage;
+    protected SummaryPage summaryPage;
 
 
 
@@ -46,6 +44,7 @@ public abstract class BasicTest {
         sideNavPage = new SideNavPage(driver,wait);
         loginPage = new LoginPage(driver, wait);
         appointmentPage = new AppointmentPage(driver, wait);
+        summaryPage = new SummaryPage(driver,wait);
     }
     @BeforeMethod
     public void beforeMethod(){
