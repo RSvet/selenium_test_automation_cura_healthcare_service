@@ -45,5 +45,12 @@ public class SideNavPage extends BasicPage{
     public void clickLogout(){
         getLogout().click();
     }
+    public WebElement getHistoryButton(){
+        return driver.findElement(By.linkText("History"));
+    }
+
+    public void clickOnHistoryButton(){
+        getHistoryButton().click();
+    }
 
 }

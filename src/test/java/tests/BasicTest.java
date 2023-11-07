@@ -28,6 +28,7 @@ public abstract class BasicTest {
     protected LoginPage loginPage;
     protected AppointmentPage appointmentPage;
     protected SummaryPage summaryPage;
+    protected HistoryPage historyPage;
 
 
 
@@ -45,6 +46,7 @@ public abstract class BasicTest {
         loginPage = new LoginPage(driver, wait);
         appointmentPage = new AppointmentPage(driver, wait);
         summaryPage = new SummaryPage(driver,wait);
+        historyPage = new HistoryPage(driver,wait);
     }
     @BeforeMethod
     public void beforeMethod(){
