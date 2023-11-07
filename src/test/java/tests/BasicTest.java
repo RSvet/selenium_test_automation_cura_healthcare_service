@@ -10,6 +10,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import pages.AppointmentPage;
 import pages.Homepage;
 import pages.LoginPage;
 import pages.SideNavPage;
@@ -28,6 +29,7 @@ public abstract class BasicTest {
     protected Homepage homepage;
     protected SideNavPage sideNavPage;
     protected LoginPage loginPage;
+    protected AppointmentPage appointmentPage;
 
 
 
@@ -43,6 +45,7 @@ public abstract class BasicTest {
         homepage = new Homepage(driver, wait);
         sideNavPage = new SideNavPage(driver,wait);
         loginPage = new LoginPage(driver, wait);
+        appointmentPage = new AppointmentPage(driver, wait);
     }
     @BeforeMethod
     public void beforeMethod(){
