@@ -1,0 +1,2 @@
+# selenium_test_automation_cura_healthcare_service_page
+Testing demo page for medical appointments
