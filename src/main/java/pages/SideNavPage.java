@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class SideNavPage extends BasicPage{
     public SideNavPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
@@ -29,6 +31,19 @@ public class SideNavPage extends BasicPage{
 
     public void clickOnLoginButton(){
         getLoginButton().click();
+    }
+
+    public boolean isLogoutPresent(){
+        List<WebElement> logout = driver.findElements(By.linkText("Logout"));
+        return !logout.isEmpty();
+    }
+
+    public WebElement getLogout(){
+        return driver.findElement(By.linkText("Logout"));
+    }
+
+    public void clickLogout(){
+        getLogout().click();
     }
 
 }

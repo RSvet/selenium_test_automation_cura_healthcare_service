@@ -60,4 +60,31 @@ public class UserLoginTests extends BasicTest{
                 "Error message is not present or correct");
         Assert.assertEquals(driver.getCurrentUrl(), baseUrl+"profile.php#login", "User is not on the login page");
     }
+
+    @Test(priority=4, retryAnalyzer = RetryAnalyzer.class)
+    public void tryToLoginWithCorrectCredentials(){
+        String username = "John Doe";
+        String password = "ThisIsNotAPassword";
+
+        sideNavPage.clickOnHamburgerButton();
+        sideNavPage.waitForSideNav();
+        sideNavPage.clickOnLoginButton();
+        wait
+                .withMessage("Url should be "+baseUrl+"profile.php#login")
+                .until(ExpectedConditions.urlToBe(baseUrl+"profile.php#login"));
+        loginPage.getUsernameInput().sendKeys(username);
+        loginPage.getPasswordInput().sendKeys(password);
+        loginPage.clickOnLoginButton();
+
+        Assert.assertEquals(driver.getCurrentUrl(), baseUrl+"#appointment", "User is not logged in");
+
+        sideNavPage.clickOnHamburgerButton();
+        Assert.assertTrue(sideNavPage.isLogoutPresent(),"Logout is not present");
+        sideNavPage.clickLogout();
+
+        wait
+                .withMessage("User did not log out")
+                .until(ExpectedConditions.urlToBe(baseUrl));
+
+    }
 }
