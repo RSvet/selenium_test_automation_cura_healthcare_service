@@ -34,4 +34,32 @@ public class CheckHistoryPageTests extends BasicTest{
         Assert.assertEquals(historyPage.getNoAppointmentElementText(), "No appointment.",
                 "There should be no appointment text");
     }
+
+    @Test(priority=2, retryAnalyzer = RetryAnalyzer.class)
+    public void checkHistoryPageWithAppointment(){
+
+        String facility = "Hongkong CURA Healthcare Center";
+        String healthcare = "Medicare";
+
+        appointmentPage.selectFacility(facility);
+        appointmentPage.selectHealthcare(healthcare);
+        appointmentPage.setTomorrowDate();
+        appointmentPage.clickBookAppointmentButton();
+        wait
+                .withMessage("User is not on the appointment summary page")
+                .until(ExpectedConditions.urlToBe(baseUrl+"appointment.php#summary"));
+
+
+        sideNavPage.clickOnHamburgerButton();
+
+        sideNavPage.clickOnHistoryButton();
+
+        wait
+                .withMessage("Url should be "+baseUrl+"history.php#history")
+                .until(ExpectedConditions.urlToBe(baseUrl+"history.php#history"));
+        Assert.assertTrue(historyPage.isAppointmentPanelPresent(), "Pannel with appointment info is not present");
+        Assert.assertEquals(historyPage.getFacilityText(), facility,
+                "Facility should be "+facility);
+
+    }
 }

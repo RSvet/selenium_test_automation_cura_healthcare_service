@@ -46,6 +46,15 @@ public class AppointmentPage extends BasicPage{
     public boolean isFirstHealthCareSelected(){
         return getFirstHealthcareProgram().isSelected();
     }
+    public void selectFacility(String value){
+        Select facility = new Select(driver.findElement(By.id("combo_facility")));
+        facility.selectByValue(value);
+    }
+
+    public void selectHealthcare(String value){
+        driver.findElement(By.xpath("//input[@value='"+value+"']")).click();
+    }
+
 
 
 }
