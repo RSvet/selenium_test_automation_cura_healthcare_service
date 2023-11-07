@@ -1,0 +1,29 @@
+<suite name="Smoke Suite" verbose="1">
+    <test name="Chrome tests">
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
+            <class name="tests.VisitLoginPageTests"/>
+            <class name="tests.UserLoginTests"/>
+            <class name="tests.MakeAppointmentTests"/>
+            <class name="tests.CheckHistoryPageTests"/>
+        </classes>
+    </test>
+    <test name="Edge tests">
+        <parameter name="browser" value="edge"></parameter>
+        <classes>
+            <class name="tests.VisitLoginPageTests"/>
+            <class name="tests.UserLoginTests"/>
+            <class name="tests.MakeAppointmentTests"/>
+            <class name="tests.CheckHistoryPageTests"/>
+        </classes>
+    </test>
+    <test name="Firefox tests">
+        <parameter name="browser" value="firefox"></parameter>
+        <classes>
+            <class name="tests.VisitLoginPageTests"/>
+            <class name="tests.UserLoginTests"/>
+            <class name="tests.MakeAppointmentTests"/>
+            <class name="tests.CheckHistoryPageTests"/>
+        </classes>
+    </test>
+</suite>
