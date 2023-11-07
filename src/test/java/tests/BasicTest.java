@@ -11,6 +11,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import pages.Homepage;
+import pages.SideNavPage;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -24,6 +25,8 @@ public abstract class BasicTest {
     protected WebDriverWait wait;
     protected String baseUrl = "https://katalon-demo-cura.herokuapp.com/";
     protected Homepage homepage;
+    protected SideNavPage sideNavPage;
+
 
 
     @BeforeClass
@@ -36,6 +39,7 @@ public abstract class BasicTest {
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         homepage = new Homepage(driver, wait);
+        sideNavPage = new SideNavPage(driver,wait);
     }
     @BeforeMethod
     public void beforeMethod(){

@@ -12,4 +12,14 @@ public class VisitLoginPageTests extends BasicTest{
                 .withMessage("Url should be "+baseUrl+"profile.php#login")
                 .until(ExpectedConditions.urlToBe(baseUrl+"profile.php#login"));
     }
+    @Test(priority=2, retryAnalyzer = RetryAnalyzer.class)
+    public void navigatesToLoginPageWithLoginButtonFromTheSideMenu(){
+        sideNavPage.clickOnHamburgerButton();
+        sideNavPage.waitForSideNav();
+        sideNavPage.clickOnLoginButton();
+        wait
+                .withMessage("Url should be "+baseUrl+"profile.php#login")
+                .until(ExpectedConditions.urlToBe(baseUrl+"profile.php#login"));
+
+    }
 }
